@@ -20,7 +20,7 @@ function Menu() {
           <button>SHOP</button>
         </div>
         <div className="music-toggle">
-          <label htmlFor="music-checkbox">MUSIC</label>
+          <label htmlFor="music-checkbox">Music On</label>
           <input
             type="checkbox"
             id="music-checkbox"
