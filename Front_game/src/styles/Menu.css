@@ -1,22 +1,41 @@
 .menu-container {
   display: flex;
+  height: 100vh;
+  color: #fff;
+
+}
+
+.menu-overlay {
+  position: absolute;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #333;
-  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 
 h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
+  font-family: Jaro;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 80px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  color: rgba(67, 47, 110, 1);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 1);
+  box-shadow: 10px rgba(0, 0, 0, 0.25);
+  padding-bottom: 400px;
 }
 
 img {
-  max-width: 100%;
+  width: 150%;
   height: auto;
-  margin-bottom: 20px;
+  z-index: 0;
 }
 
 .buttons {
