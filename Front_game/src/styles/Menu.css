@@ -1,0 +1,63 @@
+.menu-overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  z-index: 100;
+  padding: 50px
+}
+
+h1 {
+  font-family: Jaro;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 80px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  color: rgba(67, 47, 110, 1);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 1);
+  text-shadow: 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+img {
+  width: 100%;
+  height: 10%;
+  display: block;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.music-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.music-toggle label {
+  margin-right: 10px;
+}
+
+.music-toggle input[type="checkbox"] {
+  accent-color: #4CAF50;
+}

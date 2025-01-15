@@ -8,7 +8,10 @@ DROP TABLE IF EXISTS Joueur;
 CREATE TABLE Joueur (
     ID_Joueur INT AUTO_INCREMENT NOT NULL,
     Nom_Joueur VARCHAR(50) NOT NULL, -- Nom du joueur
-    Score_max_Joueur INT DEFAULT 0,  -- Meilleur score enregistré
+    Score_max_Joueur INT DEFAULT 0,
+    Monnaie INT DEFAULT 0,
+    XP INT DEFAULT 0,
+    Photo_Joueur VARCHAR(255) DEFAULT NULL, 
     PRIMARY KEY (ID_Joueur)
 ) ENGINE=InnoDB;
 
@@ -25,6 +28,7 @@ CREATE TABLE Partie (
 CREATE TABLE Cartes (
     ID_cartes INT AUTO_INCREMENT NOT NULL,
     Image_carte VARCHAR(255) NOT NULL, -- Lien ou description de l'image
+    Image_carte_retournée VARCHAR(255) NOT NULL,
     ID_paire INT NOT NULL, -- Identifiant pour retrouver la paire correspondante
     ID_score INT NOT NULL, -- Référence à la partie à laquelle appartient la carte
     retourné_cartes BOOLEAN DEFAULT FALSE, -- Indique si la carte est retournée
