@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import '../styles/Menu.css';
-import wallpaper_menu from '../assets/images/wallpaper_menu.png';
-
+import Menu_1 from '../Menu_principal/Menu_principal.jsx';
 
 function Menu() {
-  const [musicOn, setMusicOn] = useState(true);
-
-  const handleMusicToggle = () => {
-    setMusicOn(!musicOn);
-  };
 
   return (
+<<<<<<< HEAD
     <div className="menu-container">
       <img src={wallpaper_menu}/>
       <div className="menu-overlay">
@@ -34,7 +28,9 @@ function Menu() {
       </div>
     </div>
     
+=======
+    <Menu_1/>
+>>>>>>> 69a01adcdf7f51b66d4d872084f0d9c54b05881b
   );
 }
-
 export default Menu;
