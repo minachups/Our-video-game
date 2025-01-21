@@ -1,17 +1,27 @@
+
 .menu-overlay {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 100;
-  padding: 50px
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-around;
 }
 
+
+body {
+  margin: 0;
+  font-family: jaro;
+}
+  
 h1 {
   font-size: 64px;
   font-weight: 400;
@@ -21,11 +31,15 @@ h1 {
   color: rgba(67, 47, 110, 1);
   -webkit-text-stroke: 2px rgba(255, 255, 255, 1);
   text-shadow: 0px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
 }
 
 img {
   width: 100%;
   height: 100%;
+  position: fixed;
+  margin: 0;
+  padding: 0;
   display: block;
   z-index: 0;
   display: flex;
@@ -50,7 +64,7 @@ button {
 
 .music-toggle {
   display: flex;
-  align-items: center;
+  align-items: center; 
 }
 
 .music-toggle label {
