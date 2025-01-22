@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import '../CSS/Menu.css';
+import wallpaper_menu from '../assets/images/wallpaper_menu.png';  
 
 function Menu() {
+  const [musicOn, setMusicOn] = useState(true);
+
+  const handleMusicToggle = () => {
+    setMusicOn(!musicOn);
+  };
 
   return (
     <div className="menu-container">
@@ -26,4 +33,5 @@ function Menu() {
     </div>
   );
 }
+
 export default Menu;
