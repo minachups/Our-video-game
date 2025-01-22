@@ -1,0 +1,55 @@
+.music-toggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .music-toggle p {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .checkbox-gradient-border-mask {
+    display: block;
+    position: relative;
+    width: 44px;
+    height: 37px;
+    background: transparent;
+    border-radius: 28px;
+    border: 2px solid transparent; /* Bordure transparente */
+  }
+  
+  /* Effet de gradient sur la bordure de la case */
+  .checkbox-gradient-border-mask::before {
+    content: '\002714'; /* Code Unicode pour le checkmark non coché */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 28px;
+    border: 5px solid transparent;
+    background: linear-gradient(180deg, #352D68, #FFFFFF) border-box; /* Dégradé de violet à blanc */
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); /* Effet de masque */
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+  
+  /* Rendre l'input invisible mais fonctionnel */
+  .checkbox-gradient-border-mask input[type="checkbox"] {
+    position: absolute;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+
+  input[type=checkbox]:checked {
+    content: '✔';
+    background-color:white;
+}
+  
