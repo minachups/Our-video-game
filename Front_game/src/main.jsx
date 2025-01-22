@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Menu from './pages/Menu.jsx';
+import Game from './pages/Game.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Menu/>
+    <Game/>
   </StrictMode>,
 )
