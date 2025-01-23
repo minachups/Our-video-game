@@ -21,9 +21,12 @@ body {
   margin: 0;
   font-family: jaro;
   background-image: url(/src/assets/images/wallpaper_menu.png);
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
+  background-size: cover; /* Assure que l'image couvre tout l'écran */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Empêche la répétition */
+  width: 100vw; /* Utilisation de la largeur totale de la fenêtre */
+  height: 100vh; /* Utilisation de la hauteur totale de la fenêtre */
+  overflow: hidden; /* Empêche le défilement si jamais l'image dépasse */
 }
   
 h1 {
