@@ -1,30 +1,25 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-require('dotenv').config();
+const express = require("express");
+const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 8080;
 
-// Middleware
+
 app.use(bodyParser.json());
 
-// Import routes
-const joueurRoutes = require('./routes/joueur');
-const partieRoutes = require('./routes/partie');
-const pouvoirRoutes = require('./routes/pouvoir');
-const cartesRoutes = require('./routes/cartes');
-const participeRoutes = require('./routes/participe');
-const possèdeRoutes = require('./routes/possède');
 
-// Use routes
-app.use('/api/joueurs', joueurRoutes);
-app.use('/api/parties', partieRoutes);
-app.use('/api/pouvoirs', pouvoirRoutes);
-app.use('/api/cartes', cartesRoutes);
-app.use('/api/participe', participeRoutes);
-app.use('/api/possede', possèdeRoutes);
+const partieRoutes = require("./routes/game.js");
+const tourRoutes = require("./routes/tour.js");
+const paireRoutes = require("./routes/pair.js");
+const pouvoirRoutes = require("./routes/power.js");
 
-// Start server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+
+app.use("/api/power", pouvoirRoutes);  
+app.use("/api/game", partieRoutes);
+app.use("/api/tour", tourRoutes);  
+app.use("/api/pair", paireRoutes); 
+
+// Exporter l'application
+module.exports = app;

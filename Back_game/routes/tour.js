@@ -1,23 +1,21 @@
 const express = require('express');
-const {
-  getAllToursByPartie,
-  createTour,
-  enregistrerPaire,
-  terminerTour,
-} = require('../controllers/tourController');
+const { getAllTours, getTourById, createTour, updateTour, deleteTour } = require('../controllers/tourControlleur.js');
 
 const router = express.Router();
 
-// Obtenir tous les tours pour une partie donnée
-router.get('/partie/:id', getAllToursByPartie);
+// Récupérer tous les tours
+router.get('/:partieId', getAllTours);
+
+// Récupérer un tour spécifique par ID
+router.get('/:partieId/:tourId', getTourById);
 
 // Créer un nouveau tour
-router.post('/', createTour);
+router.post('/:partieId', createTour);
 
-// Enregistrer une paire trouvée par un joueur
-router.post('/paire', enregistrerPaire);
+// Mettre à jour un tour
+router.put('/:partieId/:tourId', updateTour);
 
-// Terminer un tour
-router.put('/:id/terminer', terminerTour);
+// Supprimer un tour
+router.delete('/:partieId/:tourId', deleteTour);
 
 module.exports = router;

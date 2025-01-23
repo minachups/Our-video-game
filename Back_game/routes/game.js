@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllParties, getPartieById, createPartie, updatePartie, deletePartie } = require('../controllers/partieController');
+const { getAllParties, getPartieById, createPartie, updatePartie, deletePartie } = require('../controllers/gameController');
 
 const router = express.Router();
 
