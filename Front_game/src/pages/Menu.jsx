@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import '../CSS/Menu.css';
-import wallpaper_menu from '../assets/images/wallpaper_menu.png';  
+import './Menu.css';
+import Button from '../components/Button_menu/button_menu.jsx';
+import Checkbox from '../components/Checkbox/checkbox.jsx';
 
 function Menu() {
   const [musicOn, setMusicOn] = useState(true);
@@ -11,23 +12,19 @@ function Menu() {
 
   return (
     <div className="menu-container">
-      <img src={wallpaper_menu}/>
       <div className="menu-overlay">
         <h1>MEMORY GAME</h1>
         <div>
             <div className = "buttons">
-            <button>START</button>
-            <button>SHOP</button>
+              
+              <Button>
+                START
+              </Button>
+              <Button>
+                SHOP
+              </Button>
             </div>
-            <div className="music-toggle">
-              <label htmlFor="music-checkbox">Music On</label>
-              <input
-                  type="checkbox"
-                  id="music-checkbox"
-                  checked={musicOn}
-                  onChange={handleMusicToggle}
-              />
-            </div>
+            <Checkbox musicOn={musicOn} handleMusicToggle={handleMusicToggle} />
         </div> 
       </div>
     </div>
