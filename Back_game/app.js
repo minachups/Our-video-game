@@ -1,12 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
+const bodyParser = require('body-parser');;
 require('dotenv').config();
+
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
+
 
 // Import routes
 const joueurRoutes = require('./routes/joueur');
@@ -28,3 +32,5 @@ app.use('/api/possede', possèdeRoutes);
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+module.exports = app;

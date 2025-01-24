@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../CSS/Game.css';
 
 const Card = ({ id, src, onClick, isVisible }) => (
@@ -7,7 +8,7 @@ const Card = ({ id, src, onClick, isVisible }) => (
   </div>
 );
 
-function App() {
+function Game() {
   const [cards, setCards] = useState([]);
   const [prev, setPrev] = useState(-1);
   const [waiting, setWaiting] = useState(0);
@@ -18,25 +19,24 @@ function App() {
     initGame();
   }, []);
 
-  const initGame = () => {
-    const initialCards = Array.from({ length: 16 }, (_, i) => ({
-      id: i + 1,
-      src: `https://picsum.photos/20${i + 1}`,
-      isVisible: false
-    }));
-    
-    for (let i = 0; i < 200; i++) {
-      const n1 = Math.floor(Math.random() * 16);
-      const n2 = Math.floor(Math.random() * 16);
-      [initialCards[n1].src, initialCards[n2].src] = [initialCards[n2].src, initialCards[n1].src];
+  const initGame = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/cartes');
+      const initialCards = response.data.map(card => ({
+        id: card.ID_cartes,
+        src: card.URL_Image, // Assurez-vous que votre API renvoie l'URL de l'image
+        isVisible: false
+      }));
+      
+      setCards(initialCards);
+      setImgPairs(0);
+      setCongratsMsg('');
+    } catch (error) {
+      console.error('Erreur lors de l\'initialisation du jeu:', error);
     }
-    
-    setCards(initialCards);
-    setImgPairs(0);
-    setCongratsMsg('');
   };
 
-  const clic = (n) => {
+  const clic = async (n) => {
     if (waiting !== 1) {
       const newCards = [...cards];
       const currentCard = newCards[n - 1];
@@ -51,6 +51,13 @@ function App() {
           setImgPairs(imgPairs + 1);
           if (imgPairs + 1 === cards.length / 2) {
             setCongratsMsg("Congrats you won the game");
+            try {
+              await axios.post('http://localhost:8080/api/parties', { 
+                // Ajoutez ici les données de la partie à envoyer au serveur
+              });
+            } catch (error) {
+              console.error('Erreur lors de l\'enregistrement de la partie:', error);
+            }
             setTimeout(initGame, 800);
           }
         } else {
@@ -83,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default Game;
