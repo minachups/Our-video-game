@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css'; // Importation du style global
-import Menu from './pages/Menu.jsx';  // Page Menu
-import Select_Theme from './pages/Select_Theme.jsx'; // Page Select_Theme
-import Theme_Choice from './pages/Theme_Choice.jsx'; // Page Theme_Choice
-import Select_Difficulty from './pages/Select_Difficulty.jsx'; // Page Select_Difficulty
+import './index.css'; // Styles globaux
+
+import Menu from './pages/Menu.jsx';
+import Select_Theme from './pages/Select_Theme.jsx';
+import Select_Difficulty from './pages/Select_Difficulty.jsx';
+import Select_Theme_Real from './pages/Select_Theme_Real.jsx';
+import Multi_Easy_Galaxy from './pages/Multi_Easy_Galaxy.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Menu />} />  {/* La route pour le menu */}
-        <Route path="/select-theme" element={<Select_Theme />} /> {/* La route pour Select_Theme */}
-        <Route path="/theme-choice" element={<Theme_Choice />} /> {/* La route pour Theme_Choice */}
-        <Route path="/select-difficulty" element={<Select_Difficulty />} /> {/* La route pour Select_Difficulty */}
+        <Route path="/" element={<Menu />} />
+        <Route path="/select-theme" element={<Select_Theme />} />
+        <Route path="/select-difficulty" element={<Select_Difficulty />} />
+        <Route path="/select-theme-real" element={<Select_Theme_Real />} />
+        <Route path="/multi-easy-galaxy" element={<Multi_Easy_Galaxy />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
