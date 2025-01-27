@@ -1,180 +1,101 @@
-DROP TABLE IF EXISTS Paire;
-DROP TABLE IF EXISTS Tour;
-DROP TABLE IF EXISTS Cartes;
-DROP TABLE IF EXISTS Participe;
-DROP TABLE IF EXISTS Partie;
-DROP TABLE IF EXISTS Avatar_Debloque;
-DROP TABLE IF EXISTS Avatar;
-DROP TABLE IF EXISTS Theme_Debloque;
-DROP TABLE IF EXISTS Image_Carte;
-DROP TABLE IF EXISTS Theme;
-DROP TABLE IF EXISTS Joueur;
-DROP TABLE IF EXISTS Pouvoir;
-DROP TABLE IF EXISTS Possède;
 
-CREATE TABLE Theme (
-    ID_Theme INT AUTO_INCREMENT NOT NULL,
-    Nom_Theme VARCHAR(50) NOT NULL,
-    Description_Theme VARCHAR(255),
-    Image_Arriere_Plan VARCHAR(255) NOT NULL,
-    PRIMARY KEY (ID_Theme)
+
+DROP TABLE IF EXISTS Pouvoirs;
+DROP TABLE IF EXISTS Themes;
+DROP TABLE IF EXISTS Avatars;
+DROP TABLE IF EXISTS Carte;
+DROP TABLE IF EXISTS Difficulté;
+DROP TABLE IF EXISTS Contient;
+DROP TABLE IF EXISTS influe;
+
+CREATE TABLE Difficulté (
+    ID_Difficulté INT AUTO_INCREMENT NOT NULL,
+    Nom_Difficulté VARCHAR(20) NOT NULL,
+    NombreCartes INT NOT NULL CHECK (NombreCartes IN (15, 20, 27)),
+    PRIMARY KEY (ID_Difficulté)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Image_Carte (
-    ID_Image INT AUTO_INCREMENT NOT NULL,
-    ID_Theme INT NOT NULL,
-    URL_Image VARCHAR(255) NOT NULL,
-    PRIMARY KEY (ID_Image),
-    CONSTRAINT FK_Image_Carte_ID_Theme FOREIGN KEY (ID_Theme) REFERENCES Theme (ID_Theme)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
+INSERT INTO Difficulté (Nom_Difficulté, NombreCartes)
+VALUES 
+    ('Facile', 15),
+    ('Moyen', 20),
+    ('Difficile', 27);
 
-CREATE TABLE Avatar (
-    ID_Avatar INT AUTO_INCREMENT NOT NULL,
-    Nom_Avatar VARCHAR(50) NOT NULL,
-    URL_Avatar VARCHAR(255) NOT NULL,
-    ID_Theme INT NOT NULL,
-    PRIMARY KEY (ID_Avatar),
-    CONSTRAINT FK_Avatar_ID_Theme FOREIGN KEY (ID_Theme) REFERENCES Theme (ID_Theme)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
 
-CREATE TABLE Joueur (
-    ID_Joueur INT AUTO_INCREMENT NOT NULL,
-    Nom_Joueur VARCHAR(20) NOT NULL,
-    ID_Avatar_Actuel INT,
-    Score_max_Joueur INT DEFAULT 0,
-    PairNumber_Joueur INT DEFAULT 0,
-    PRIMARY KEY (ID_Joueur),
-    CONSTRAINT FK_Joueur_ID_Avatar_Actuel FOREIGN KEY (ID_Avatar_Actuel) REFERENCES Avatar (ID_Avatar)
-        ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB;
 
-CREATE TABLE Theme_Debloque (
-    ID_Joueur INT NOT NULL,
-    ID_Theme INT NOT NULL,
-    Date_Debloquage TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID_Joueur, ID_Theme),
-    CONSTRAINT FK_Theme_Debloque_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Theme_Debloque_ID_Theme FOREIGN KEY (ID_Theme) REFERENCES Theme (ID_Theme)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE Avatar_Debloque (
-    ID_Joueur INT NOT NULL,
-    ID_Avatar INT NOT NULL,
-    Date_Debloquage TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID_Joueur, ID_Avatar),
-    CONSTRAINT FK_Avatar_Debloque_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Avatar_Debloque_ID_Avatar FOREIGN KEY (ID_Avatar) REFERENCES Avatar (ID_Avatar)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE Partie (
-    ID_score INT AUTO_INCREMENT NOT NULL,
-    Valeur_score INT DEFAULT 0,
-    date_Début_score TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    date_Fin_score TIMESTAMP NULL DEFAULT NULL,
-    Terminé_score BOOLEAN DEFAULT FALSE,
-    Tour_Actuel INT DEFAULT 1,
-    ID_Theme INT,
-    PRIMARY KEY (ID_score),
-    CONSTRAINT FK_Partie_ID_Theme FOREIGN KEY (ID_Theme) REFERENCES Theme (ID_Theme)
-        ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE Pouvoir (
+CREATE TABLE Pouvoirs (
     ID_Pouvoir INT AUTO_INCREMENT NOT NULL,
-    Nom_Pouvoir VARCHAR(25) NOT NULL,
-    Description_Pouvoir VARCHAR(255) DEFAULT NULL,
-    FlushTiles_Pouvoir BOOLEAN DEFAULT FALSE,
-    TilesToFlush_Pouvoir INT DEFAULT 0,
-    Bomb_Pouvoir BOOLEAN DEFAULT FALSE,
-    BombNumber_Pouvoir INT DEFAULT 0,
-    Retourne_Pouvoir BOOLEAN DEFAULT FALSE,
-    RetourneNumber_Pouvoir INT DEFAULT 0,
-    VisibilitéJoueur_Pouvoir BOOLEAN DEFAULT FALSE,
-    VisibilitéJoueurTour_Pouvoir INT DEFAULT 0,
-    CacheAdversaire_Pouvoir BOOLEAN DEFAULT FALSE,
-    BloqueCartes_Pouvoir BOOLEAN DEFAULT FALSE,
-    BloqueCarteTour_Pouvoir INT DEFAULT 0,
-    TourSupp_Pouvoir BOOLEAN DEFAULT FALSE,
-    Joker_Pouvoir BOOLEAN DEFAULT FALSE,
-    LoosePair_Pouvoir BOOLEAN DEFAULT FALSE,
-    LoosePairNumber_Pouvoir INT DEFAULT 0,
-    WinPair_Pouvoir BOOLEAN DEFAULT FALSE,
-    WinPairNumber_Pouvoir INT DEFAULT 0,
-    Ange_Pouvoir BOOLEAN DEFAULT FALSE,
-    Fireball_Pouvoir BOOLEAN DEFAULT FALSE,
-    FireballNumber_Pouvoir INT DEFAULT 0,
+    Nom_Pouvoir VARCHAR(25),
+    Description_Pouvoir VARCHAR(255),
+    Images_Pouvoirs VARCHAR(255),
+    FlushTiles_Pouvoir BOOL,
+    TilesToFlush_Pouvoir INT,
+    Bomb_Pouvoir BOOL,
+    BombNumber_Pouvoir INT,
+    Retourne_Pouvoir BOOL,
+    RetourneNumber_Pouvoir INT,
+    VisibilitéJoueur_Pouvoir BOOL,
+    VisibilitéJoueurTour_Pouvoir INT,
+    CacheAdversaire_Pouvoir BOOL,
+    BloqueCartes_Pouvoir BOOL,
+    BloqueCarteTour_Pouvoir INT,
+    TourSupp_Pouvoir BOOL,
+    Joker_Pouvoir BOOL,
+    LoosePair_Pouvoir INT,
+    LoosePairNumber_Pouvoir INT,
+    Ange_Pouvoir BOOL,
+    Fireball_Pouvoir BOOL,
+    FireballNumber_Pouvoir INT, 
     PRIMARY KEY (ID_Pouvoir)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Cartes (
-    ID_cartes INT AUTO_INCREMENT NOT NULL,
-    retourné_cartes BOOLEAN DEFAULT FALSE,
-    Pouvoir_Cartes BOOLEAN DEFAULT FALSE,
-    ID_score INT NOT NULL,
-    pouvoir_id_pouvoir INT DEFAULT NULL,
-    ID_Image INT,
-    PRIMARY KEY (ID_cartes),
-    CONSTRAINT FK_Cartes_ID_score FOREIGN KEY (ID_score) REFERENCES Partie (ID_score)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Cartes_pouvoir_id_pouvoir FOREIGN KEY (pouvoir_id_pouvoir) REFERENCES Pouvoir (ID_Pouvoir)
-        ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT FK_Cartes_ID_Image FOREIGN KEY (ID_Image) REFERENCES Image_Carte (ID_Image)
-        ON DELETE SET NULL ON UPDATE CASCADE
+
+
+CREATE TABLE Themes (
+    ID_Themes INT AUTO_INCREMENT NOT NULL,
+    Images_Themes VARCHAR(255),
+    PRIMARY KEY (ID_Themes)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Participe (
-    ID_Joueur INT NOT NULL,
-    ID_score INT NOT NULL,
-    Score_Joueur INT DEFAULT 0,
-    PRIMARY KEY (ID_Joueur, ID_score),
-    CONSTRAINT FK_Participe_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Participe_ID_score FOREIGN KEY (ID_score) REFERENCES Partie (ID_score)
-        ON DELETE CASCADE ON UPDATE CASCADE
+
+
+CREATE TABLE Avatars (
+    ID_Avatars INT AUTO_INCREMENT NOT NULL,
+    Images VARCHAR(255),
+    PRIMARY KEY (ID_Avatars)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Possède (
+
+
+CREATE TABLE Carte (
+    ID_Carte INT AUTO_INCREMENT NOT NULL,
+    Retourné_Carte BOOL,
+    Retourné_images VARCHAR(255),
+    Dos_images VARCHAR(255),
+    PRIMARY KEY (ID_Carte)
+) ENGINE=InnoDB;
+
+
+
+CREATE TABLE Contient (
+    ID_Themes INT NOT NULL,
+    ID_Avatars INT NOT NULL,
+    ID_Carte INT NOT NULL,
     ID_Pouvoir INT NOT NULL,
-    ID_Joueur INT NOT NULL,
-    PRIMARY KEY (ID_Pouvoir, ID_Joueur),
-    CONSTRAINT FK_Possède_ID_Pouvoir FOREIGN KEY (ID_Pouvoir) REFERENCES Pouvoir (ID_Pouvoir)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Possède_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY (ID_Themes, ID_Avatars, ID_Carte, ID_Pouvoir),
+    CONSTRAINT FK_Contient_ID_Themes FOREIGN KEY (ID_Themes) REFERENCES Themes (ID_Themes),
+    CONSTRAINT FK_Contient_ID_Avatars FOREIGN KEY (ID_Avatars) REFERENCES Avatars (ID_Avatars),
+    CONSTRAINT FK_Contient_ID_Carte FOREIGN KEY (ID_Carte) REFERENCES Carte (ID_Carte),
+    CONSTRAINT FK_Contient_ID_Pouvoir FOREIGN KEY (ID_Pouvoir) REFERENCES Pouvoirs (ID_Pouvoir)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Tour (
-    ID_Tour INT AUTO_INCREMENT NOT NULL,
-    ID_score INT NOT NULL,
-    ID_Joueur INT NOT NULL,
-    Num_Tour INT NOT NULL,
-    Points_Gagnes INT DEFAULT 0,
-    PRIMARY KEY (ID_Tour),
-    CONSTRAINT FK_Tour_ID_score FOREIGN KEY (ID_score) REFERENCES Partie (ID_score)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Tour_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
 
-CREATE TABLE Paire (
-    ID_Paire INT AUTO_INCREMENT NOT NULL,
-    ID_Tour INT NOT NULL,
-    ID_Joueur INT NOT NULL,
-    Carte1_ID INT NOT NULL,
-    Carte2_ID INT NOT NULL,
-    PRIMARY KEY (ID_Paire),
-    CONSTRAINT FK_Paire_ID_Tour FOREIGN KEY (ID_Tour) REFERENCES Tour (ID_Tour)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Paire_ID_Joueur FOREIGN KEY (ID_Joueur) REFERENCES Joueur (ID_Joueur)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Paire_Carte1_ID FOREIGN KEY (Carte1_ID) REFERENCES Cartes (ID_cartes)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Paire_Carte2_ID FOREIGN KEY (Carte2_ID) REFERENCES Cartes (ID_cartes)
-        ON DELETE CASCADE ON UPDATE CASCADE
+
+
+CREATE TABLE influe (
+    ID_Carte INT NOT NULL,
+    ID_Pouvoir INT NOT NULL,
+    PRIMARY KEY (ID_Carte, ID_Pouvoir),
+    CONSTRAINT FK_influe_ID_Carte FOREIGN KEY (ID_Carte) REFERENCES Carte (ID_Carte),
+    CONSTRAINT FK_influe_ID_Pouvoir FOREIGN KEY (ID_Pouvoir) REFERENCES Pouvoirs (ID_Pouvoir)
 ) ENGINE=InnoDB;
