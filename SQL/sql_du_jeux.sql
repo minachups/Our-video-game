@@ -1,136 +1,101 @@
--- Suppression des tables existantes si elles existent déjà
-DROP TABLE IF EXISTS game_sessions, game_rounds, users, themes, cards, avatars, difficulties, Pouvoir, player_powers, game_session_powers;
 
--- Table pour les utilisateurs (sans gestion de connexion)
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,  -- Nom du joueur
-    avatar_id INT,  -- Référence à un avatar
-    FOREIGN KEY (avatar_id) REFERENCES avatars(avatar_id)
-);
 
--- Table pour les thèmes
-CREATE TABLE themes (
-    theme_id INT AUTO_INCREMENT PRIMARY KEY,
-    theme_name VARCHAR(50) NOT NULL,  -- Nom du thème
-    theme_description TEXT,  -- Description du thème
-    theme_card_design VARCHAR(255),  -- Chemin d'accès aux images de cartes
-    theme_avatar_design VARCHAR(255)  -- Chemin d'accès aux images d'avatars
-);
+DROP TABLE IF EXISTS Pouvoirs;
+DROP TABLE IF EXISTS Themes;
+DROP TABLE IF EXISTS Avatars;
+DROP TABLE IF EXISTS Carte;
+DROP TABLE IF EXISTS Difficulté;
+DROP TABLE IF EXISTS Contient;
+DROP TABLE IF EXISTS influe;
 
--- Table pour les cartes (ajout de la possibilité de bombes)
-CREATE TABLE cards (
-    card_id INT AUTO_INCREMENT PRIMARY KEY,
-    theme_id INT,
-    card_image VARCHAR(255) NOT NULL,
-    is_bomb BOOLEAN DEFAULT FALSE,  -- Carte bombe ou non
-    UNIQUE (theme_id, card_image),  -- Les images doivent être uniques par thème
-    FOREIGN KEY (theme_id) REFERENCES themes(theme_id)
-);
+CREATE TABLE Difficulté (
+    ID_Difficulté INT AUTO_INCREMENT NOT NULL,
+    Nom_Difficulté VARCHAR(20) NOT NULL,
+    NombreCartes INT NOT NULL CHECK (NombreCartes IN (15, 20, 27)),
+    PRIMARY KEY (ID_Difficulté)
+) ENGINE=InnoDB;
 
--- Table pour les avatars
-CREATE TABLE avatars (
-    avatar_id INT AUTO_INCREMENT PRIMARY KEY,
-    avatar_name VARCHAR(50) NOT NULL,  -- Nom de l'avatar
-    avatar_image VARCHAR(255) NOT NULL,  -- Image de l'avatar
-    theme_id INT,  -- Thème de l'avatar
-    FOREIGN KEY (theme_id) REFERENCES themes(theme_id)
-);
+INSERT INTO Difficulté (Nom_Difficulté, NombreCartes)
+VALUES 
+    ('Facile', 15),
+    ('Moyen', 20),
+    ('Difficile', 27);
 
--- Table pour les difficultés
-CREATE TABLE difficulties (
-    difficulty_id INT AUTO_INCREMENT PRIMARY KEY,
-    difficulty_name VARCHAR(20) NOT NULL,
-    max_time INT,  -- Temps maximal pour une paire
-    max_attempts INT  -- Nombre maximal d'essais
-);
 
--- Table pour les pouvoirs
-CREATE TABLE Pouvoir (
+
+CREATE TABLE Pouvoirs (
     ID_Pouvoir INT AUTO_INCREMENT NOT NULL,
-    Nom_Pouvoir VARCHAR(25) NOT NULL,  -- Nom du pouvoir
-    Description_Pouvoir VARCHAR(255) DEFAULT NULL,
-    FlushTiles_Pouvoir BOOLEAN DEFAULT FALSE,
-    TilesToFlush_Pouvoir INT DEFAULT 0,
-    Bomb_Pouvoir BOOLEAN DEFAULT FALSE,
-    BombNumber_Pouvoir INT DEFAULT 0,
-    Retourne_Pouvoir BOOLEAN DEFAULT FALSE,
-    RetourneNumber_Pouvoir INT DEFAULT 0,
-    VisibilitéJoueur_Pouvoir BOOLEAN DEFAULT FALSE,
-    VisibilitéJoueurTour_Pouvoir INT DEFAULT 0,
-    CacheAdversaire_Pouvoir BOOLEAN DEFAULT FALSE,
-    BloqueCartes_Pouvoir BOOLEAN DEFAULT FALSE,
-    BloqueCarteTour_Pouvoir INT DEFAULT 0,
-    TourSupp_Pouvoir BOOLEAN DEFAULT FALSE,
-    Joker_Pouvoir BOOLEAN DEFAULT FALSE,
-    LoosePair_Pouvoir BOOLEAN DEFAULT FALSE,
-    LoosePairNumber_Pouvoir INT DEFAULT 0,
-    WinPair_Pouvoir BOOLEAN DEFAULT FALSE,
-    WinPairNumber_Pouvoir INT DEFAULT 0,
-    Ange_Pouvoir BOOLEAN DEFAULT FALSE,
-    Fireball_Pouvoir BOOLEAN DEFAULT FALSE,
-    FireballNumber_Pouvoir INT DEFAULT 0,
+    Nom_Pouvoir VARCHAR(25),
+    Description_Pouvoir VARCHAR(255),
+    Images_Pouvoirs VARCHAR(255),
+    FlushTiles_Pouvoir BOOL,
+    TilesToFlush_Pouvoir INT,
+    Bomb_Pouvoir BOOL,
+    BombNumber_Pouvoir INT,
+    Retourne_Pouvoir BOOL,
+    RetourneNumber_Pouvoir INT,
+    VisibilitéJoueur_Pouvoir BOOL,
+    VisibilitéJoueurTour_Pouvoir INT,
+    CacheAdversaire_Pouvoir BOOL,
+    BloqueCartes_Pouvoir BOOL,
+    BloqueCarteTour_Pouvoir INT,
+    TourSupp_Pouvoir BOOL,
+    Joker_Pouvoir BOOL,
+    LoosePair_Pouvoir INT,
+    LoosePairNumber_Pouvoir INT,
+    Ange_Pouvoir BOOL,
+    Fireball_Pouvoir BOOL,
+    FireballNumber_Pouvoir INT, 
     PRIMARY KEY (ID_Pouvoir)
 ) ENGINE=InnoDB;
 
--- Table pour associer les pouvoirs aux joueurs
-CREATE TABLE player_powers (
-    player_id INT,
-    pouvoir_id INT,
-    is_active BOOLEAN DEFAULT TRUE,  -- Le pouvoir est-il actif ?
-    FOREIGN KEY (player_id) REFERENCES users(user_id),
-    FOREIGN KEY (pouvoir_id) REFERENCES Pouvoir(ID_Pouvoir),
-    PRIMARY KEY (player_id, pouvoir_id)
-);
 
--- Table pour les sessions de jeu (multijoueur local)
-CREATE TABLE game_sessions (
-    session_id INT AUTO_INCREMENT PRIMARY KEY,
-    theme_id INT,
-    difficulty_id INT,
-    start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    end_time TIMESTAMP,
-    current_player_turn INT,  -- ID du joueur dont c'est le tour
-    FOREIGN KEY (theme_id) REFERENCES themes(theme_id),
-    FOREIGN KEY (difficulty_id) REFERENCES difficulties(difficulty_id)
-);
 
--- Table pour les joueurs d'une session de jeu (multijoueur local)
-CREATE TABLE game_session_players (
-    session_id INT,
-    player_id INT,
-    player_order INT,  -- Ordre des joueurs (1 = premier joueur, etc.)
-    FOREIGN KEY (session_id) REFERENCES game_sessions(session_id),
-    FOREIGN KEY (player_id) REFERENCES users(user_id),
-    PRIMARY KEY (session_id, player_id)
-);
+CREATE TABLE Themes (
+    ID_Themes INT AUTO_INCREMENT NOT NULL,
+    Images_Themes VARCHAR(255),
+    PRIMARY KEY (ID_Themes)
+) ENGINE=InnoDB;
 
--- Table pour les tours de jeu (cartes retournées, paires, et bombes)
-CREATE TABLE game_rounds (
-    round_id INT AUTO_INCREMENT PRIMARY KEY,
-    session_id INT,
-    round_number INT,
-    player_id INT,  -- Identifie quel joueur a joué ce tour
-    card_id_1 INT,  -- Première carte retournée
-    card_id_2 INT,  -- Deuxième carte retournée
-    matched BOOLEAN DEFAULT FALSE,  -- Si les cartes sont une paire
-    is_bomb_exploded BOOLEAN DEFAULT FALSE,  -- Si une bombe a explosé
-    round_time INT,  -- Temps passé dans le tour (en secondes)
-    FOREIGN KEY (session_id) REFERENCES game_sessions(session_id),
-    FOREIGN KEY (card_id_1) REFERENCES cards(card_id),
-    FOREIGN KEY (card_id_2) REFERENCES cards(card_id),
-    FOREIGN KEY (player_id) REFERENCES users(user_id)
-);
 
--- Table pour les pouvoirs utilisés pendant une session de jeu
-CREATE TABLE game_session_powers (
-    session_id INT,
-    player_id INT,
-    pouvoir_id INT,
-    used_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Quand le pouvoir a été utilisé
-    effect VARCHAR(255),  -- Effet du pouvoir (ex : "shuffle" pour mélanger les cartes)
-    FOREIGN KEY (session_id) REFERENCES game_sessions(session_id),
-    FOREIGN KEY (player_id) REFERENCES users(user_id),
-    FOREIGN KEY (pouvoir_id) REFERENCES Pouvoir(ID_Pouvoir),
-    PRIMARY KEY (session_id, player_id, pouvoir_id)
-);
+
+CREATE TABLE Avatars (
+    ID_Avatars INT AUTO_INCREMENT NOT NULL,
+    Images VARCHAR(255),
+    PRIMARY KEY (ID_Avatars)
+) ENGINE=InnoDB;
+
+
+
+CREATE TABLE Carte (
+    ID_Carte INT AUTO_INCREMENT NOT NULL,
+    Retourné_Carte BOOL,
+    Retourné_images VARCHAR(255),
+    Dos_images VARCHAR(255),
+    PRIMARY KEY (ID_Carte)
+) ENGINE=InnoDB;
+
+
+
+CREATE TABLE Contient (
+    ID_Themes INT NOT NULL,
+    ID_Avatars INT NOT NULL,
+    ID_Carte INT NOT NULL,
+    ID_Pouvoir INT NOT NULL,
+    PRIMARY KEY (ID_Themes, ID_Avatars, ID_Carte, ID_Pouvoir),
+    CONSTRAINT FK_Contient_ID_Themes FOREIGN KEY (ID_Themes) REFERENCES Themes (ID_Themes),
+    CONSTRAINT FK_Contient_ID_Avatars FOREIGN KEY (ID_Avatars) REFERENCES Avatars (ID_Avatars),
+    CONSTRAINT FK_Contient_ID_Carte FOREIGN KEY (ID_Carte) REFERENCES Carte (ID_Carte),
+    CONSTRAINT FK_Contient_ID_Pouvoir FOREIGN KEY (ID_Pouvoir) REFERENCES Pouvoirs (ID_Pouvoir)
+) ENGINE=InnoDB;
+
+
+
+
+CREATE TABLE influe (
+    ID_Carte INT NOT NULL,
+    ID_Pouvoir INT NOT NULL,
+    PRIMARY KEY (ID_Carte, ID_Pouvoir),
+    CONSTRAINT FK_influe_ID_Carte FOREIGN KEY (ID_Carte) REFERENCES Carte (ID_Carte),
+    CONSTRAINT FK_influe_ID_Pouvoir FOREIGN KEY (ID_Pouvoir) REFERENCES Pouvoirs (ID_Pouvoir)
+) ENGINE=InnoDB;
