@@ -1,5 +1,13 @@
 {
-  "dependencies": {
+  "devDependencies": {
     "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "start": "nodemon serveur.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
   }
 }
