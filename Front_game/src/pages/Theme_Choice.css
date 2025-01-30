@@ -1,0 +1,32 @@
+.menu-overlay {
+    color: #432F6E;
+    font-size: 64px;
+    font-family: Jaro;
+    font-weight: 400;
+    word-wrap: break-word 
+    }
+    
+    .buttons {
+    color: white;
+    font-size: 64px;
+    font-family: Jaro;
+    font-weight: 400;
+    word-wrap: break-word
+    }
+    
+    /* Centrer le bouton "THEMES" */
+    .theme-button-container {
+        display: flex;
+        justify-content: center; 
+        align-items: center;  
+        margin-top: 20px;
+      }
+      
+    
+    .Checkbox {
+    font-size: 40px;
+    font-family: Jaro;
+    font-weight: 400;
+    word-wrap: break-word
+    }
+    

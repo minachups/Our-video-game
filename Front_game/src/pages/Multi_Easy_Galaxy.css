@@ -1,0 +1,155 @@
+/* Styles globaux */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  /* Appliquer un fond spécifique lorsque sur la page Multi_Easy_Galaxy */
+  .multi-easy-galaxy-page {
+    background-image: url('/src/assets/images/wp9998529.jpg');
+  }
+  
+  /* Styles de la page Multi_Easy_Galaxy */
+  .multi-easy-galaxy {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-left: 280px;
+  }
+  
+  /* Header */
+  .header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    font-family: Jaro;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    color: white;
+    border-bottom: 2px solid #6a0dad;
+  }
+  
+  /* Styles du header */
+  .First_header_text {
+    width: 222px;
+    height: 86px;
+    color: #000;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Jaro;
+    font-size: 40px;
+  }
+  
+  .Second_header_text {
+    width: 222px;
+    height: 86px;
+    color: #4E1160;
+    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1.5;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Jaro;
+    font-size: 40px;
+  }
+  
+  .Third_header_text, .Fourth_header_text {
+    width: 222px;
+    height: 86px;
+    color: #000;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Jaro;
+    font-size: 40px;
+  }
+  
+  .Fourth_header_text {
+    color: #4E1160;
+    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1.5;
+    -webkit-text-stroke-color: #FFF;
+  }
+  
+  /* Grille principale */
+  .main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+  
+  /* Grille des cartes */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 91px);
+    grid-template-rows: repeat(5, 91px);
+    gap: 16px;
+    row-gap: 16px;
+    padding-left: 180px;
+    padding-top: 20px;
+  }
+  
+  /* Carte individuelle */
+  .card {
+    width: 91px;
+    height: 91px;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 28px;
+    border: 1px solid #73B0FF;
+    box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.50);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: linear-gradient(180deg, #000 82%, #752A29 100%);
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgb(251, 63, 0);
+  }
+  
+  .card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+  
+  /* Section "My Desk" */
+  .desk {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid white;
+  }
+  
+  .desk h2 {
+    font-size: 14px;
+    font-family: Jaro;
+    margin-bottom: 10px;
+  }
+  
+  .desk .cards {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .desk .cards img {
+    width: 80px;
+    height: 120px;
+    border-radius: 28px;
+    border: 2px solid white;
+    object-fit: cover;
+  }
+  
