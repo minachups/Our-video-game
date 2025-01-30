@@ -1,16 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css'; // Importation du style global
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import GameBoard from './GameBoard.jsx';
 
-import Menu from './pages/Menu.jsx';  // Page Menu
+const App = () => {
+  const [gameState, setGameState] = useState(null);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Menu />} />  {/* La route pour le menu */}
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+  // Démarrer une nouvelle partie
+  const startGame = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/start');
+      setGameState(res.data);
+    } catch (error) {
+      console.error("Erreur lors du démarrage du jeu", error);
+    }
+  };
+
+  // Lancer la partie dès le début
+  useEffect(() => {
+    startGame();
+  }, []);
+
+  return (
+    <div>
+      <h1>Jeu de Mémoire</h1>
+      {gameState ? (
+        <div>
+          <GameBoard gameState={gameState} setGameState={setGameState} />
+        </div>
+      ) : (
+        <button onClick={startGame}>Démarrer une nouvelle partie</button>
+      )}
+    </div>
+  );
+};
+
+export default App;
