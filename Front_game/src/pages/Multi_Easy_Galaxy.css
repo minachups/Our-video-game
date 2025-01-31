@@ -7,7 +7,9 @@ body {
     background-position: center;
     color: white;
   }
-  
+  #root{
+    z-index: 10;
+  }
   /* Appliquer un fond spécifique lorsque sur la page Multi_Easy_Galaxy */
   .multi-easy-galaxy-page {
     background-image: url('/src/assets/images/wp9998529.jpg');
@@ -124,25 +126,8 @@ body {
   
 
   
-  /* Carte individuelle */
-  .card {
-    width: 91px;
-    height: 91px;
-    background: black;
-    justify-content: center;
-    align-items: center;
-    border-radius: 28px;
-    border: 2px solid transparent;  /* Transparent border pour appliquer le border-image */
-    border-image: linear-gradient(180deg, #73b0ff 82%, #d64a49 100%);  /* Application du gradient au border */
-    border-image-slice: 1;  /* Permet d'afficher l'image de bordure */
-    background-clip: content-box, border-box;
-    box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.50);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background: linear-gradient(180deg, #000 82%, #752A29 100%);
-    position: relative;
-    z-index: 100;
-  }
+ 
+
   
 
   
@@ -155,10 +140,14 @@ body {
     width: 80%;
     height: 80%;
     object-fit: contain;
-    pointer-events: none; /* Empêcher l'image d'intercepter l'effet de hover */
-  }
+    pointer-events: none; 
+    position: inherit;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+  } 
   
-  /* Section "My Desk" */
+  
   .desk {
     position: absolute;
     bottom: 250px;
@@ -177,7 +166,7 @@ body {
     box-shadow: 0 0 20px rgb(251, 63, 0);
     z-index: 100;
   }
-  
+
   
   .desk h2 {
     position: absolute;  
@@ -188,12 +177,12 @@ body {
     margin-bottom: 10px;
   }
   
-  .desk .cards {
+  .desk {
     display: flex;
     gap: 10px;
   }
   
-  .desk .cards img {
+  .desk {
     width: 80px;
     height: 120px;
     border-radius: 28px;

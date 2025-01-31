@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react';
 import './Multi_Easy_Galaxy.css';
+import Card from '../components/cards/Card.jsx';
 
 
 
 
-function Card({ image, onClick }) {
-  return (
-    <div className="card" onClick={onClick}>
-      <img src={image} alt="Galaxy" />
-    </div>
-  );
-}
 
 function Multi_Easy_Galaxy() {
   // Définir 30 cartes (6x5).
