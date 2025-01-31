@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import './Multi_Easy_Galaxy.css';
 
+
+
+
 function Card({ image, onClick }) {
   return (
     <div className="card" onClick={onClick}>
@@ -29,7 +32,15 @@ function Multi_Easy_Galaxy() {
         <span className="First_header_text">Galaxy Theme</span>
         <span className="Second_header_text">02:30 min</span>
         <span className="Third_header_text">Easy Mode</span>
-        <span className="Fourth_header_text">Score: <br /> 12400 XP</span>
+        <span className="Fourth_header_text">Score 12400 XP</span>
+         {/* Conteneur du cercle Avatar */}
+         <div className="avatar-container">
+          <img
+            src="/src/assets/images/default-avatar.png"
+            alt="User Avatar"
+            className="avatar-image"
+          />
+        </div>
       </h1>
       <div className="main-content">
         <div className="grid">
@@ -45,6 +56,9 @@ function Multi_Easy_Galaxy() {
       </aside>
     </div>
   );
+  
 }
+
+
 
 export default Multi_Easy_Galaxy;
