@@ -1,12 +1,12 @@
 // src/pages/GamePage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GameBoard from '../components/GameBoard';  // Composant de l'affichage du jeu
+import GameBoard from '../components/GameBoard';
 
 const GamePage = () => {
   const [gameState, setGameState] = useState(null);
 
-  // Démarrer une nouvelle partie
+
   const startGame = async () => {
     try {
       const res = await axios.get('http://localhost:5000/start');

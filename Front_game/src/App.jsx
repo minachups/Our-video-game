@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css'; // Styles globaux
+import './index.css'; 
 
 import Menu from './pages/Menu.jsx';
 import Select_Theme from './pages/Select_Theme.jsx';
