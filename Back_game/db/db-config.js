@@ -1,23 +1,29 @@
-const mysql = require('mysql2');
+const mariadb = require('mariadb');
+require('dotenv').config();
 
-const connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: 'root',
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+// Créer un pool de connexions
+const pool = mariadb.createPool({
+  host: process.env.HOST,  
+  user: 'root',    
+  password: process.env.PASSWORD, 
+  database: process.env.DATABASE_NAME, 
+  waitForConnections: true,
+  connectionLimit: 5,
+  acquireTimeout: 20000, // Augmente le délai avant timeout
+  connectTimeout: 20000,// Augmente le délai pour établir la connexion
+  queueLimit: 0
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error("Erreur de connexion à la base de données :", err);
-    return;
+// Fonction pour obtenir une connexion
+async function getConnection() {
+  try {
+    const conn = await pool.getConnection();
+    console.log("✅ Connexion réussie à MariaDB !");
+    return conn;
+  } catch (err) {
+    console.error("❌ Erreur de connexion à MariaDB:", err);
+    throw err;
   }
-  console.log("Connexion  à la base de données établie avec succès.");
-});
-// Promisify the pool query method for easier async/await usage
-const promiseConnection = connection.promise();
+}
 
-module.exports = promiseConnection;
+module.exports = { pool, getConnection };
