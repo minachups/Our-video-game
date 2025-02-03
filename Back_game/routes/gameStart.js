@@ -26,15 +26,15 @@ let gameState = {
   flippedCards: []
 };
 
-// Fonction pour récupérer et mélanger les images des cartes
+
 function createDeck(difficulty) {
-  const imageFolder = 'public/themes/Space/Card'; // Dossier d'images
+  const imageFolder = 'public/themes/Space/Card'; 
   let imagePaths = [];
 
   try {
     imagePaths = fs.readdirSync(imageFolder)
-      .filter(file => /\.(png|jpg|jpeg|svg)$/i.test(file)) // Ajouter svg ici
-      .map(file => `/themes/Space/Card/${file}`); // Le chemin est relatif à la racine publique
+      .filter(file => /\.(png|jpg|jpeg)$/i.test(file)) 
+      .map(file => `/themes/Space/Card/${file}`); 
   } catch (err) {
     console.error("Erreur lors de la lecture des images:", err);
   }
