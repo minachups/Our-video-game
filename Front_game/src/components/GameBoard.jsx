@@ -37,13 +37,17 @@ const GameBoard = ({ gameState, setGameState }) => {
           >
             {card.flipped ? (
               <img
-              src={`http://localhost:5000/${card.value}`}  // Correctement formé
-              alt={`Carte ${index}`}
-              style={{ width: '80px', height: '80px', objectFit: 'cover' }}
-            />
-            
+                src={`http://localhost:5000/${card.value}`} 
+                alt={`Carte ${index}`}
+                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+              />
             ) : (
-              ''
+              
+              <img
+                src={`http://localhost:5000/${card.imageUrl}`}  
+                alt="Carte non retournée"
+                style={{ width: '80px', height: '80px' }}
+              />
             )}
           </div>
         ))}
@@ -51,5 +55,6 @@ const GameBoard = ({ gameState, setGameState }) => {
     </div>
   );
 };
+
 
 export default GameBoard;

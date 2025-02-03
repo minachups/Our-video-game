@@ -69,12 +69,27 @@ app.post('/upload-card', upload.single('cardImage'), (req, res) => {
   res.json({ message: "Upload réussi", imageUrl: imageUrl });
 });
 
-// Route pour démarrer une partie avec difficulté
 app.get('/start/:difficulty', (req, res) => {
   const { difficulty } = req.params;
 
   try {
-    gameState.cards = createDeck(difficulty).map(value => ({ value, flipped: false }));
+    // Créer le deck avec les cartes retournées et non retournées
+    gameState.cards = createDeck(difficulty).map(value => ({
+      value,
+      flipped: false,  // Ajoutez un état de retourné
+      returned: false  // Ajoutez la colonne retourné_cartes
+    }));
+
+    // Ajout des informations de la carte (incluant le lien vers l'image SVG pour la carte retournée)
+    gameState.cards.forEach((card, index) => {
+      if (!card.flipped) {
+        card.imageUrl = 'themes/Space/Card/Back_planet.svg';
+      } else {
+        // Ajoutez l'image correspondante si la carte est retournée
+        card.imageUrl = card.value;
+      }
+    });
+
     gameState.flippedCards = [];
     gameState.scores = { 1: 0, 2: 0 };
     gameState.currentPlayer = 1;
@@ -84,6 +99,8 @@ app.get('/start/:difficulty', (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 // Route pour retourner une carte
 app.post('/flip-card', express.json(), (req, res) => {
