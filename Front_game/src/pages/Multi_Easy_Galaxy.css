@@ -59,6 +59,8 @@ body {
     z-index: 100;
     color: white;
     border-bottom: 1px solid #ffffff;
+    margin: 0; /* Supprime tout espace extérieur */
+    padding: 0; /* Supprime tout espace intérieur inutile */
   }
 
   
@@ -79,10 +81,10 @@ body {
   .Second_header_text {
     width: 222px;
     height: 86px;
-    color: #4E1160;
+    color: #D64A49;
     text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #c300ff;
+    -webkit-text-stroke-color: #AA4747;
     font-family: Jaro;
     font-size: 35px;
   }
@@ -98,10 +100,10 @@ body {
   }
   
   .Fourth_header_text {
-    color: #4E1160;
+    color: #D64A49;
     text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #c300ff;
+    -webkit-text-stroke-color: #AA4747;
   }
   
   /* Grille principale */
@@ -122,6 +124,7 @@ body {
     row-gap: 16px;
     padding-left: 180px;
     padding-top: 20px;
+    z-index: 100;
   }
   
 
@@ -145,7 +148,11 @@ body {
     display: flex;
     justify-self: center;
     justify-content: center;
+    z-index: 100;
+
   } 
+  
+
   
   
   .desk {

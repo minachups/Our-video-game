@@ -10,7 +10,7 @@
   background-clip: padding-box; 
   border: solid 2px transparent;
   color: #FFF;
-  background: #000;
+  background: linear-gradient(to top, rgb(0, 0, 0), #D64A49);
   position: relative;
   
 }
@@ -25,7 +25,7 @@
   z-index: -1;
   margin: -3px;
   border-radius: inherit;
-  background: linear-gradient(to right, red, orange);
+  background: linear-gradient(to bottom, rgb(0, 0, 0), #D64A49);
   animation: rotationY 0.7s infinite linear;
   -webkit-animation: rotationY 0.7s infinite linear;
 }
