@@ -35,7 +35,16 @@ const GameBoard = ({ gameState, setGameState }) => {
               border: '1px solid #000',
             }}
           >
-            {card.flipped ? card.value : ''}
+            {card.flipped ? (
+              <img
+              src={`http://localhost:5000/${card.value}`}  // Correctement formé
+              alt={`Carte ${index}`}
+              style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+            />
+            
+            ) : (
+              ''
+            )}
           </div>
         ))}
       </div>

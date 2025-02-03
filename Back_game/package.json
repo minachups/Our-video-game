@@ -3,7 +3,7 @@
     "nodemon": "^3.1.9"
   },
   "scripts": {
-    "start": "nodemon serveur.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cors": "^2.8.5",
