@@ -37,6 +37,7 @@ CREATE TABLE Pouvoir (
     ID_Pouvoir INT AUTO_INCREMENT NOT NULL,
     Nom_Pouvoir VARCHAR(25) NOT NULL,
     Description_Pouvoir VARCHAR(255) DEFAULT NULL,
+    Image_Pouvoir VARCHAR(255) DEFAULT NULL,
     FlushTiles_Pouvoir BOOLEAN DEFAULT FALSE,
     TilesToFlush_Pouvoir INT DEFAULT 0,
     Bomb_Pouvoir BOOLEAN DEFAULT FALSE,
@@ -132,3 +133,25 @@ INSERT INTO Cartes (ID_Theme, URL_Image, retourné_cartes) VALUES
 (1, 'themes/Space/Card/watercolor-different-planets-set_23-2148276863%2015.png', TRUE),
 (1, 'themes/Space/Card/watercolor-different-planets-set_23-2148276863%2016.png', TRUE),
 (1, 'themes/Space/Card/watercolor-different-planets-set_23-2148276863%2017.png', TRUE);
+
+
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, FlushTiles_Pouvoir, TilesToFlush_Pouvoir,) VALUES
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 2),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 3),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 4),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 14),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 6),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 8),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 10),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 12),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 17),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 20),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 27);
+
+
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, Retourne_Pouvoir, RetourneNumber_Pouvoir) VALUES
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 1),
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 2),
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 3),
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 4),
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 5),

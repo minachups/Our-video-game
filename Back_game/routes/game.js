@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Configuration de Multer pour l'upload d'images
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadPath = 'public/themes/Space/Card';
@@ -17,6 +17,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 });
+
 const upload = multer({ storage: storage });
 
 let gameState = {
