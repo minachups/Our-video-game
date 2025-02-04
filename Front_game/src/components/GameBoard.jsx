@@ -12,13 +12,28 @@ const GameBoard = ({ gameState, setGameState }) => {
   };
 
   return (
-    <div>
-      <div className="scoreboard">
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: 'calc(100vh - 100px)', // Ajustez cette valeur selon la hauteur de votre h1
+      padding: '20px'
+    }}>
+      <div className="scoreboard" style={{
+        marginBottom: '20px',
+        textAlign: 'center'
+      }}>
         <p>Joueur 1: {gameState.scores[1]}</p>
         <p>Joueur 2: {gameState.scores[2]}</p>
         <p>Tour: Joueur {gameState.currentPlayer}</p>
       </div>
-      <div className="board" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 100px)', gap: '10px' }}>
+      <div className="board" style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 100px)',
+        gap: '10px',
+        justifyContent: 'center'
+      }}>
         {gameState.cards.map((card, index) => (
           <div
             key={index}
@@ -42,7 +57,6 @@ const GameBoard = ({ gameState, setGameState }) => {
                 style={{ width: '80px', height: '80px', objectFit: 'cover' }}
               />
             ) : (
-              
               <img
                 src={`http://localhost:5000/${card.imageUrl}`}  
                 alt="Carte non retournée"
@@ -55,6 +69,5 @@ const GameBoard = ({ gameState, setGameState }) => {
     </div>
   );
 };
-
 
 export default GameBoard;
