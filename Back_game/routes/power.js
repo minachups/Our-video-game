@@ -5,7 +5,6 @@ const path = require('path');
 
 
 
-
 app.get('/image/:id', (req, res) => {
     db.query('SELECT image FROM images WHERE id = ?', [req.params.id], (err, results) => {
         if (err || results.length === 0) {

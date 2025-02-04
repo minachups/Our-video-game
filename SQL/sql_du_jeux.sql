@@ -63,7 +63,7 @@ CREATE TABLE Pouvoir (
 
 CREATE TABLE Cartes (
     ID_cartes INT AUTO_INCREMENT NOT NULL,
-    ID_Theme INT NOT NULL,  
+    ID_Theme INT NOT NULL, 
     retourné_cartes BOOLEAN DEFAULT FALSE,
     Pouvoir_Cartes BOOLEAN DEFAULT FALSE,
     URL_Image VARCHAR(255) NOT NULL,
@@ -135,18 +135,18 @@ INSERT INTO Cartes (ID_Theme, URL_Image, retourné_cartes) VALUES
 (1, 'themes/Space/Card/watercolor-different-planets-set_23-2148276863%2017.png', TRUE);
 
 
-INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, FlushTiles_Pouvoir, TilesToFlush_Pouvoir,) VALUES
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 2),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 3),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 4),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 14),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 6),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 8),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 10),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 12),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 17),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 20),
-('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg',TRUE, 27);
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, FlushTiles_Pouvoir, TilesToFlush_Pouvoir) VALUES
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 2),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 3),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 4),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 14),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 6),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 8),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 10),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 12),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 17),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 20),
+('The mixer', 'Aleatory cards will be mixed', '\themes\Pouvoir\Shuffle.svg', TRUE, 27);
 
 
 INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, Retourne_Pouvoir, RetourneNumber_Pouvoir) VALUES
@@ -154,4 +154,26 @@ INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, Retourne_P
 ('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 2),
 ('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 3),
 ('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 4),
-('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 5),
+('The Fairy', 'Random cards reveal','\themes\Pouvoir\Fairy.svg', TRUE, 5);
+
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, BloqueCartes_Pouvoir, BloqueCarteTour_Pouvoir) VALUES
+('The Locker', "Choose 2 cards. Your adversary could'nt reveal them for 2 tours.", "\themes\Pouvoir\Lock.svg", TRUE, 1),
+('The Locker', "Choose 2 cards. Your adversary could'nt reveal them for 2 tours.", "\themes\Pouvoir\Lock.svg", TRUE, 2),
+('The Locker', "Choose 2 cards. Your adversary could'nt reveal them for 2 tours.", "\themes\Pouvoir\Lock.svg", TRUE, 3),
+('The Locker', "Choose 2 cards. Your adversary could'nt reveal them for 2 tours.", "\themes\Pouvoir\Lock.svg", TRUE, 4);
+
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, Joker_Pouvoir) VALUES
+('The Joker', "You can reveal a third card.", "\themes\Pouvoir\Joker.svg", TRUE);
+
+INSERT INTO Pouvoir (Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir, VisibilitéJoueur_Pouvoir, VisibilitéJoueurTour_Pouvoir) VALUES
+('The Stain', "Ooops, seems like you can’t see clearly anymore.", "\themes\Pouvoir\Stain.svg", TRUE, 1),
+('The Stain', "Ooops, seems like you can’t see clearly anymore.", "\themes\Pouvoir\Stain.svg", TRUE, 2);
+
+INSERT INTO Cartes (ID_Theme, URL_Image, retourné_cartes, Pouvoir_Cartes) VALUES
+(1, 'themes/Space/Card/Back_planet.svg', TRUE, TRUE),
+(2, 'themes/Space/Card/Back_planet.svg', TRUE, TRUE),
+(3, 'themes/Space/Card/Back_planet.svg', TRUE, TRUE),
+(4, 'themes/Space/Card/Back_planet.svg', TRUE, TRUE);
+
+
+
