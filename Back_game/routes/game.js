@@ -22,10 +22,33 @@ const upload = multer({ storage: storage });
 
 let gameState = {
   currentPlayer: 1,
+  turnCount: 0, 
   scores: { 1: 0, 2: 0 },
   cards: [],
-  flippedCards: []
+  flippedCards: [],
+  playerPowers: { 1: [], 2: [] } 
 };
+
+function givePowerIfNeeded() {
+  gameState.turnCount++;  // Incrémenter le compteur de tours
+
+  if (gameState.turnCount % 3 === 0) {  // Tous les 3 tours
+      const currentPlayer = gameState.currentPlayer;
+      
+      // Liste des pouvoirs possibles (avec leurs images stockées dans le backend)
+      const availablePowers = [
+          { name: "Shuffle", image: "/themes/Pouvoir/Shuffle.svg" },
+          { name: "Extra Turn", image: "/themes/Pouvoir/ExtraTurn.svg" },
+          { name: "See One Card", image: "/themes/Pouvoir/SeeOneCard.svg" }
+      ];
+
+      // Sélection aléatoire d'un pouvoir
+      const randomPower = availablePowers[Math.floor(Math.random() * availablePowers.length)];
+
+      // Ajouter le pouvoir au joueur actuel
+      gameState.playerPowers[currentPlayer].push(randomPower);
+  }
+}
 
 
 function createDeck(difficulty) {
@@ -133,11 +156,13 @@ app.post('/flip-card', express.json(), (req, res) => {
         gameState.cards[index2].flipped = false;
         gameState.flippedCards = [];
         gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1;
+        givePowerIfNeeded();  // Ajout ici !
       }, 1000);
     }
   }
 
   res.json(gameState);
 });
+
 
 module.exports = app;

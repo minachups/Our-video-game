@@ -5,16 +5,14 @@ const path = require('path');
 
 
 
-app.get('/image/:id', (req, res) => {
-    db.query('SELECT image FROM images WHERE id = ?', [req.params.id], (err, results) => {
-        if (err || results.length === 0) {
-            return res.status(404).send('Image non trouvée.');
-        }
-
-        res.setHeader('Content-Type', 'image/svg+xml');
-        res.send(results[0].image);
-    });
+app.get('/get-powers/:playerId', (req, res) => {
+    const { playerId } = req.params;
+    if (!gameState.playerPowers[playerId]) {
+        return res.status(404).json({ message: "Joueur introuvable ou aucun pouvoir." });
+    }
+    res.json({ powers: gameState.playerPowers[playerId] });
 });
+
 
 
 module.exports = app;
