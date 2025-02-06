@@ -1,12 +1,18 @@
 const express = require('express');
-const { getAllPouvoirs, getPouvoirById, createPouvoir, updatePouvoir, deletePouvoir } = require('../controllers/pouvoirController');
+const app = express.Router();
+const multer = require('multer');
+const path = require('path');
 
-const router = express.Router();
 
-router.get('/', getAllPouvoirs);
-router.get('/:id', getPouvoirById);
-router.post('/', createPouvoir);
-router.put('/:id', updatePouvoir);
-router.delete('/:id', deletePouvoir);
 
-module.exports = router;
+app.get('/get-powers/:playerId', (req, res) => {
+    const { playerId } = req.params;
+    if (!gameState.playerPowers[playerId]) {
+        return res.status(404).json({ message: "Joueur introuvable ou aucun pouvoir." });
+    }
+    res.json({ powers: gameState.playerPowers[playerId] });
+});
+
+
+
+module.exports = app;

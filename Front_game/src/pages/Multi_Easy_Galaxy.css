@@ -1,0 +1,184 @@
+/* Styles globaux */
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 60px;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  #root{
+    z-index: 10;
+  }
+  /* Appliquer un fond spécifique lorsque sur la page Multi_Easy_Galaxy */
+  .multi-easy-galaxy-page {
+    background-image: url('/src/assets/images/wp9998529.jpg');
+
+  }
+  
+  /* Styles de la page Multi_Easy_Galaxy */
+  .multi-easy-galaxy {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-left: 280px;
+  }
+  
+/* Cercle de l'avatar */
+.avatar-container {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    background: linear-gradient(180deg, #115299, #751414);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Image de l'avatar */
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Header */
+  .header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    font-family: Jaro;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    color: white;
+    border-bottom: 1px solid #ffffff;
+     margin: 0; /* Supprime tout espace extérieur */
+    padding: 0; /* Supprime tout espace intérieur inutile */
+  }
+
+  
+  
+  /* Styles du header */
+  .First_header_text {
+    width: 222px;
+    height: 86px;
+    flex-shrink: 0;
+    color: #000;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Jaro;
+    font-size: 35px;
+    
+  }
+  
+  .Second_header_text {
+    width: 222px;
+    height: 86px;
+    color: #D64A49;
+    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #AA4747;
+    font-family: Jaro;
+    font-size: 35px;
+  }
+  
+  .Third_header_text, .Fourth_header_text {
+    width: 222px;
+    height: 86px;
+    color: #000;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Jaro;
+    font-size: 35px;
+  }
+  
+  .Fourth_header_text {
+    color: #D64A49;
+    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #AA4747;
+  }
+  
+  /* Grille principale */
+  .main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+  
+
+
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    position: inherit;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+  } 
+
+
+  .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgb(251, 63, 0);
+  }
+
+  
+  
+  .desk {
+    position: absolute;
+    bottom: 250px;
+    right: 190px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 25px 10px;
+    border-radius: 28px;
+    border: 2px solid white;
+    width: 60px;
+    height: 120px;
+    transform: rotate(-11.8deg);
+  }
+
+  .desk:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 20px rgb(251, 63, 0);
+    z-index: 100;
+  }
+
+  
+  .desk h2 {
+    position: absolute;  
+    bottom: 150px;       
+    right: 20px;         
+    font-size: 14px;
+    font-family: Jaro;
+    margin-bottom: 40px;
+  }
+  
+  .desk {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .desk {
+    width: 80px;
+    height: 120px;
+    border-radius: 28px;
+    border: 2px solid white;
+    object-fit: cover;
+    
+  }
+  
+  
+  

@@ -1,30 +1,23 @@
-const express = require('express');
-const bodyParser = require('body-parser');
 require('dotenv').config();
-
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 8080;
+require('./config/db.js')
 
-// Middleware
-app.use(bodyParser.json());
 
-// Import routes
-const joueurRoutes = require('./routes/joueur');
-const partieRoutes = require('./routes/partie');
-const pouvoirRoutes = require('./routes/pouvoir');
-const cartesRoutes = require('./routes/cartes');
-const participeRoutes = require('./routes/participe');
-const possèdeRoutes = require('./routes/possède');
+app.use(cors());
+
+
+app.use(express.static('public'));
+const gameRoutes = require('./routes/game.js');
+const powerRoutes = require('./routes/power.js');
+
 
 // Use routes
-app.use('/api/joueurs', joueurRoutes);
-app.use('/api/parties', partieRoutes);
-app.use('/api/pouvoirs', pouvoirRoutes);
-app.use('/api/cartes', cartesRoutes);
-app.use('/api/participe', participeRoutes);
-app.use('/api/possede', possèdeRoutes);
+app.use('/', gameRoutes);
+app.use('/', powerRoutes);
 
-// Start server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+
+
+module.exports = app; 
