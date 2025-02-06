@@ -58,23 +58,32 @@ body {
     z-index: 100;
     color: white;
     border-bottom: 1px solid #ffffff;
-     margin: 0; /* Supprime tout espace extérieur */
-    padding: 0; /* Supprime tout espace intérieur inutile */
+    margin: 0; /* Supprime tout espace extérieur */
+    padding: 5px 10px; /* Supprime tout espace intérieur inutile */
   }
 
   
   
   /* Styles du header */
   .First_header_text{
-    width: 222px;
-    height: 86px;
+    margin: 5px;
     flex-shrink: 0;
     color: #000;
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: #FFF;
     font-family: Jaro;
-    font-size: 35px;
+    font-size: 2rem;
     
+  }
+
+  .score-container{
+    color: #fff;
+    -webkit-text-stroke-width: 0.5px;
+    font-family: Jaro, sans-serif;
+    font-size: 2rem;
+    margin: 5px;
+    display: flex;
+
   }
   
   
@@ -85,7 +94,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding-top: 60px; /* Pour éviter que le contenu ne soit masqué par le header fixe */
   }
   
   
@@ -97,9 +106,13 @@ body {
     padding: 25px 10px;
     border-radius: 28px;
     border: 2px solid white;
-    width: 60px;
+    width: 80px;
     height: 120px;
     transform: rotate(-11.8deg);
+    display: flex;
+    gap: 10px;
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
 
   .desk:hover {
@@ -115,7 +128,7 @@ body {
     right: 20px;         
     font-size: 14px;
     font-family: Jaro;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   
   .desk {
@@ -131,6 +144,57 @@ body {
     object-fit: cover;
     
   }
+
+  /* Tablettes et petits écrans */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .First_header_text,
+  .score-container {
+    font-size: 1.5rem;
+    margin: 3px;
+  }
+  
+  .main-content {
+    padding-top: 80px; /* Plus d'espace pour le header en mode colonne */
+  }
+  
+  .desk {
+    bottom: 150px;
+    right: 100px;
+    width: 60px;
+    height: 100px;
+  }
+}
+
+/* Petits écrans et mobiles */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .First_header_text,
+  .score-container {
+    font-size: 1.2rem;
+    margin: 2px;
+  }
+  
+  .main-content {
+    padding-top: 100px; /* Ajustement pour un header potentiellement plus haut */
+  }
+  
+  .desk {
+    bottom: 100px;
+    right: 50px;
+    width: 50px;
+    height: 80px;
+  }
+}
   
   
   

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import GameBoard from '../components/GameBoard'; // Assurez-vous d'importer le composant GameBoard
+import GameBoard from '../components/GameBoard';
 import './Multi_Easy_Galaxy.css';
 
 function Multi_Easy_Galaxy() {
@@ -24,7 +24,6 @@ function Multi_Easy_Galaxy() {
   useEffect(() => {
     startGame();
     document.body.classList.add('multi-easy-galaxy-page');
-    
     return () => {
       document.body.classList.remove('multi-easy-galaxy-page');
     };
@@ -33,8 +32,22 @@ function Multi_Easy_Galaxy() {
   return (
     <div className="multi-easy-galaxy">
       <nav className="header">
-        <span className="First_header_text">{theme.charAt(0).toUpperCase() + theme.slice(1)} Theme</span>
-        <span className="First_header_text">{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode</span>
+        <p className="First_header_text">
+          {theme.charAt(0).toUpperCase() + theme.slice(1)} Theme
+        </p>
+        <p className="First_header_text">
+          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode
+        </p>
+        {gameState && (
+          <div className="First_header_text">
+            <p>Tour: Joueur {gameState.currentPlayer}</p>
+          </div>
+        )}
+        {gameState && (
+          <div className="score-container">
+            <p>Score <span>{gameState.scores[1]}</span>:<span>{gameState.scores[2]}</span></p>
+          </div>
+        )}
       </nav>
       <div className="main-content">
         {gameState ? (
@@ -46,6 +59,7 @@ function Multi_Easy_Galaxy() {
       <aside className="desk">
         <h2>My Desk</h2>
         <div className="cards">
+          {/* Contenu de votre desk */}
         </div>
       </aside>
     </div>

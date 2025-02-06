@@ -23,12 +23,7 @@ const GameBoard = ({ gameState, setGameState, difficulty }) => {
 
   return (
     <div>
-      <div className="scoreboard">
-        <p>Joueur 1: {gameState.scores[1]}</p>
-        <p>Joueur 2: {gameState.scores[2]}</p>
-        <p>Tour: Joueur {gameState.currentPlayer}</p>
-      </div>
-
+  
       <div
         className="board"
         style={{
@@ -37,6 +32,7 @@ const GameBoard = ({ gameState, setGameState, difficulty }) => {
           gridTemplateRows: `repeat(${rows}, 100px)`,
           gap: '10px',
           justifyContent: 'center',
+          paddingLeft: '440px',
         }}
       >
         {gameState.cards.map((card, index) => (
