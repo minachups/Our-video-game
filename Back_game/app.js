@@ -11,12 +11,12 @@ app.use(cors());
 
 app.use(express.static('public'));
 const gameRoutes = require('./routes/game.js');
-const powerRoutes = require('./routes/power.js');
+
 
 
 // Use routes
 app.use('/', gameRoutes);
-app.use('/', powerRoutes);
+
 
 
 
