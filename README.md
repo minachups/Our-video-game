@@ -1,71 +1,34 @@
-# Getting Started with Create React App
+# Castux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vous en avez marre du jeu de paires (memory) avec votre petit cousin ou avec votre grand-mère ?
+On vous propose un tout nouveau gameplay qui rajoutera du piment dans tout ça.
 
-## Available Scripts
+## Règles 
 
-In the project directory, you can run:
+2 Joueurs, le 1er joueur retourne 2 cases si ce sont les mêmes, il gagne 1 point sinon, c'est au tour du 2e joueur. 
+Au bout d'un moment, des cartes pouvoirs apparaissent à utiliser pour désavantager l'adversaire ou vous avantager.
+(Le jeu est toujours en cours de développement beaucoup de choses à ajuster)
+(Le mode solo est en cours de développement)
 
-### `npm start`
+## Comment jouer ?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Our-video-game
+* Ouvrez le terminal et allez dans le dossier où vous voulez conserver le jeu.
+* Écrivez dans le terminal `git clone https://github.com/minachups/Our-video-game.git`
+* Ecrivez dans le terminal `mysql -u root -p`
+* Ecrivez votre mot de passe de MYSQL
+* Ecrivez `CREATE DATABASE Castux` pour créer la base de données
+* Ecrivez `USE Castux`
+* Ecrivez `SOURCE /chemin/` a la place de /chemin/ vous devriez mettre le chemin qui mène au fichier SQL (Il se trouve dans SQL\sql_du_jeux.sql dans le dossier que vous aviez cloner)
+* Ouvrez une nouvelle fenêtre du terminal
+* Écrivez dans le terminal `cd our-video-game`
+* Écrivez dans le terminal `cd Back_game`
+* Écrivez dans le terminal `npm i` pour installer les dépendances nécessaires 
+* Écrivez dans le terminal `nodemon` pour démarrer le back (Il sera sur le port 5000)
+* Ouvrez une nouvelle fenêtre du terminal 
+* Allez dans le dossier où se trouve le jeu 
+* Écrivez dans le terminal `cd our-video-game`
+* Écrivez dans le terminal `cd Front_game`
+* Écrivez dans le terminal `npm i` pour installer les dépendances nécessaires
+* Écrivez dans le terminal `npm run dev` pour démarrer le front (Il sera sur le port 5173)
+* Allez sur le port 5173 avec `http://localhost:5173/`
+* Et amusez vous avec votre ami
