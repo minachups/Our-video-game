@@ -2,8 +2,6 @@
 body {
     margin: 0;
     padding: 0;
-    padding-top: 60px;
-    font-family: 'Arial', sans-serif;
     background-size: cover;
     background-position: center;
     color: white;
@@ -22,7 +20,6 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding-left: 280px;
   }
   
 /* Cercle de l'avatar */
@@ -53,9 +50,9 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
     font-size: 16px;
     font-family: Jaro;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
@@ -68,7 +65,7 @@ body {
   
   
   /* Styles du header */
-  .First_header_text {
+  .First_header_text{
     width: 222px;
     height: 86px;
     flex-shrink: 0;
@@ -80,33 +77,7 @@ body {
     
   }
   
-  .Second_header_text {
-    width: 222px;
-    height: 86px;
-    color: #D64A49;
-    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #AA4747;
-    font-family: Jaro;
-    font-size: 35px;
-  }
   
-  .Third_header_text, .Fourth_header_text {
-    width: 222px;
-    height: 86px;
-    color: #000;
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #FFF;
-    font-family: Jaro;
-    font-size: 35px;
-  }
-  
-  .Fourth_header_text {
-    color: #D64A49;
-    text-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #AA4747;
-  }
   
   /* Grille principale */
   .main-content {
@@ -114,27 +85,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
+
   }
-  
-
-
-
-  .card img {
-    width: 100%;
-    height: 100%;
-    position: inherit;
-    display: flex;
-    justify-self: center;
-    justify-content: center;
-  } 
-
-
-  .card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgb(251, 63, 0);
-  }
-
   
   
   .desk {

@@ -2,14 +2,6 @@ import React from 'react';
 import "./cards.css";
 
 const Card = ({ card, index, handleFlipCard }) => {
-  const startGame = async () => {
-    try {
-      const res = await axios.get(`http://localhost:5000/start/${difficulty}`);
-      setGameState(res.data);
-    } catch (error) {
-      console.error("Erreur lors du démarrage du jeu", error);
-    }
-  };
   return (
     <div
       key={index}

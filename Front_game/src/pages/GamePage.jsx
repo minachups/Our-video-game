@@ -34,7 +34,7 @@ function Multi_Easy_Galaxy() {
     <div className="multi-easy-galaxy">
       <nav className="header">
         <span className="First_header_text">{theme.charAt(0).toUpperCase() + theme.slice(1)} Theme</span>
-        <span className="Third_header_text">{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode</span>
+        <span className="First_header_text">{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode</span>
       </nav>
       <div className="main-content">
         {gameState ? (
