@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: 60px;
     font-family: 'Arial', sans-serif;
     background-size: cover;
     background-position: center;
@@ -11,6 +12,7 @@ body {
   /* Appliquer un fond spécifique lorsque sur la page Multi_Easy_Galaxy */
   .multi-easy-galaxy-page {
     background-image: url('/src/assets/images/wp9998529.jpg');
+
   }
   
   /* Styles de la page Multi_Easy_Galaxy */
@@ -18,7 +20,16 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding-left: 280px;
+    background-Size: cover;
+    background-Position: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-Sizing: 'border-box';
+    padding: '20px';
+    
   }
   
   /* Header */
@@ -36,17 +47,21 @@ body {
     z-index: 100;
     color: white;
     border-bottom: 2px solid #6a0dad;
+    opacity: 100%;
   }
   
   /* Styles du header */
   .First_header_text {
     width: 222px;
     height: 86px;
-    color: #000;
+    color: #020202;
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #FFF;
     font-family: Jaro;
     font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   
   .Second_header_text {

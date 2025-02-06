@@ -24,13 +24,11 @@ const GameBoard = ({ gameState, setGameState }) => {
         marginBottom: '20px',
         textAlign: 'center'
       }}>
-        <p>Joueur 1: {gameState.scores[1]}</p>
-        <p>Joueur 2: {gameState.scores[2]}</p>
         <p>Tour: Joueur {gameState.currentPlayer}</p>
       </div>
       <div className="board" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(4, 100px)',
+        gridTemplateColumns: 'repeat(6, 100px)',
         gap: '10px',
         justifyContent: 'center'
       }}>
