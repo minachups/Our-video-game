@@ -63,15 +63,34 @@ function createDeck(difficulty) {
     console.error("Erreur lors de la lecture des images:", err);
   }
 
-  let numberOfPairs = difficulty === "easy" ? 12 : difficulty === "medium" ? 18 : 24;
-
-  if (imagePaths.length < numberOfPairs) {
-    throw new Error("Pas assez d'images. Télécharge au moins " + numberOfPairs + " images uniques.");
+  let numberOfCards;
+  switch(difficulty) {
+    case "easy":
+      numberOfCards = 15;
+      break;
+    case "medium":
+      numberOfCards = 20;
+      break;
+    case "hard":
+      numberOfCards = 26;
+      break;
+    default:
+      throw new Error("Difficulté non reconnue");
   }
 
-  const deck = shuffle([...imagePaths.slice(0, numberOfPairs), ...imagePaths.slice(0, numberOfPairs)]);
-  return deck;
+  if (imagePaths.length < numberOfCards / 2) {
+    throw new Error(`Pas assez d'images. Téléchargez au moins ${numberOfCards / 2} images uniques.`);
+  }
+
+  // Sélectionner aléatoirement les images nécessaires
+  const selectedImages = shuffle(imagePaths).slice(0, numberOfCards / 2);
+  
+  // Créer les paires
+  const deck = [...selectedImages, ...selectedImages];
+  
+  return shuffle(deck);
 }
+
 
 
 // Mélanger un tableau
@@ -98,20 +117,16 @@ app.get('/start/:difficulty', (req, res) => {
 
   try {
     // Créer le deck avec les cartes retournées et non retournées
-    gameState.cards = createDeck(difficulty).map(value => ({
+    gameState.cards = createDeck(difficulty).map((value, index) => ({
+      id: index,
       value,
-      flipped: false,  // Ajoutez un état de retourné
-      returned: false  // Ajoutez la colonne retourné_cartes
+      flipped: false,
+      matched: false
     }));
 
     // Ajout des informations de la carte (incluant le lien vers l'image SVG pour la carte retournée)
-    gameState.cards.forEach((card, index) => {
-      if (!card.flipped) {
-        card.imageUrl = 'themes/Space/Card/Back_planet.svg';
-      } else {
-        // Ajoutez l'image correspondante si la carte est retournée
-        card.imageUrl = card.value;
-      }
+    gameState.cards.forEach(card => {
+      card.imageUrl = card.flipped ? card.value : 'themes/Space/Card/Back_planet.svg';
     });
 
     gameState.flippedCards = [];
@@ -123,6 +138,7 @@ app.get('/start/:difficulty', (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 
