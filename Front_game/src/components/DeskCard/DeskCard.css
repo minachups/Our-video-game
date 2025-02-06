@@ -1,0 +1,46 @@
+.desk {
+    position: absolute;
+    bottom: 250px;
+    right: 190px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 28px;
+    border: 2px solid white;
+    width: 100px;
+    height: 150px;
+    transform: rotate(-11.8deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+.desk:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgb(251, 63, 0);
+    z-index: 100;
+}
+
+.desk h2 {
+    font-size: 14px;
+    font-family: Jaro;
+    margin: 5px 0;
+    color: white;
+}
+
+.desk-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.score {
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+.description {
+    font-size: 10px;
+    color: white;
+}

@@ -34,13 +34,11 @@ function Multi_Easy_Galaxy() {
     <div className="multi-easy-galaxy">
       <nav className="header">
         <span className="First_header_text">{theme.charAt(0).toUpperCase() + theme.slice(1)} Theme</span>
-        <span className="Second_header_text">02:30 min</span>
         <span className="Third_header_text">{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode</span>
-        <span className="Fourth_header_text">Score: <br /> {gameState ? gameState.score : '0'} XP</span>
       </nav>
       <div className="main-content">
         {gameState ? (
-          <GameBoard gameState={gameState} setGameState={setGameState} />
+          <GameBoard gameState={gameState} setGameState={setGameState} difficulty={difficulty} />
         ) : (
           <p>Chargement du jeu...</p>
         )}
@@ -48,7 +46,6 @@ function Multi_Easy_Galaxy() {
       <aside className="desk">
         <h2>My Desk</h2>
         <div className="cards">
-          {/* Cartes collectées */}
         </div>
       </aside>
     </div>

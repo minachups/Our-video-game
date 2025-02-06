@@ -63,7 +63,7 @@ function createDeck(difficulty) {
     console.error("Erreur lors de la lecture des images:", err);
   }
 
-  let numberOfPairs = difficulty === "easy" ? 12 : difficulty === "medium" ? 18 : 24;
+  let numberOfPairs = difficulty === "easy" ? 15 : difficulty === "medium" ? 20 : 27;
 
   if (imagePaths.length < numberOfPairs) {
     throw new Error("Pas assez d'images. Télécharge au moins " + numberOfPairs + " images uniques.");
