@@ -32,7 +32,6 @@ const GameBoard = ({ gameState, setGameState, difficulty }) => {
           gridTemplateRows: `repeat(${rows}, 100px)`,
           gap: '10px',
           justifyContent: 'center',
-          paddingLeft: '440px',
         }}
       >
         {gameState.cards.map((card, index) => (
