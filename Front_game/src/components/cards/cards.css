@@ -1,0 +1,46 @@
+.card {
+  width: 91px;
+  height: 91px;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+
+  background-clip: padding-box; 
+  border: solid 2px transparent;
+  color: #FFF;
+  background: #000;
+  position: relative;
+  
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -3px;
+  border-radius: 28px;
+  background: linear-gradient(to right, red, orange);
+  animation: rotationY 0.7s infinite linear;
+  -webkit-animation: rotationY 0.7s infinite linear;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  position: inherit;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+} 
+
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgb(251, 63, 0);
+}
