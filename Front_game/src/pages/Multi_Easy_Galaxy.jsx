@@ -5,7 +5,6 @@ import Card from '../components/cards/Card.jsx';
 
 
 
-
 function Multi_Easy_Galaxy() {
   // Définir 30 cartes (6x5).
   const cards = Array(30).fill('/src/assets/images/planet.png');
