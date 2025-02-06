@@ -1,15 +1,27 @@
 import React from 'react';
-import "./cards.css"
+import "./cards.css";
 
-const Card = ({ imageSrc, title, description, power }) => {
+const Card = ({ card, index, handleFlipCard }) => {
   return (
-    <div className="card">
-      <img src={imageSrc} alt={title} className="card-image" />
-      <div className="card-content">
-        <h3 className="card-title">{title}</h3>
-        <p className="card-description">{description}</p>
-        <p className="card-score">{power}</p>
-      </div>
+    <div
+      key={index}
+      className={`card ${card.flipped ? 'flipped' : ''}`}
+      onClick={() => handleFlipCard(index)}
+      
+    >
+      {card.flipped ? (
+        <img
+          src={`http://localhost:5000/${card.value}`} 
+          alt={`Carte ${index}`}
+          style={{ objectFit: 'cover' }}
+        />
+      ) : (
+        <img
+          src={`http://localhost:5000/${card.imageUrl}`}  
+          alt="Carte non retournée"
+          style={{ objectFit: 'contain' }}
+        />
+      )}
     </div>
   );
 };

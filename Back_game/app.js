@@ -1,17 +1,23 @@
+require('dotenv').config();
 const express = require('express');
-const { Server } = require('boardgame.io/server');
-const MemoryGame = require('./games/memory-game');
-const cardsRoutes = require('./routes/cards');
-const powersRoutes = require('./routes/powers');
-
-// Configuration de l'application
+const path = require('path');
+const cors = require('cors');
 const app = express();
-app.use(express.json());
+require('./config/db.js')
 
-// Routes pour gérer les données
-app.use('/api/cards', cardsRoutes);
-app.use('/api/powers', powersRoutes);
 
-// Boardgame.io : Serveur de jeu
-const server = Server({ games: [MemoryGame] });
-server.app.use(app);
+app.use(cors());
+
+
+app.use(express.static('public'));
+const gameRoutes = require('./routes/game.js');
+const powerRoutes = require('./routes/power.js');
+
+
+// Use routes
+app.use('/', gameRoutes);
+app.use('/', powerRoutes);
+
+
+
+module.exports = app; 

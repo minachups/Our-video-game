@@ -1,13 +1,6 @@
 import React from 'react';
 import './navbar.css'; 
-/*
-const Navbar = ({ score, themeName, gameTime, difficulty, themeImage }) => {
-  const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  };
-*/
+
 const Navbar = () => {
   return (
     <div className="navbar">
