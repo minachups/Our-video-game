@@ -7,10 +7,18 @@ function Select_Theme_Real() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const difficulty = params.get('difficulty'); // Récupération de la difficulté depuis l'URL
+  const difficulty = params.get('difficulty'); // Récupération de la difficulté
+
+  // Dictionnaire des thèmes avec leurs IDs
+  const themes = {
+    galaxy: 1,
+    ocean: 2,
+    nature: 3
+  };
 
   const handleThemeSelection = (theme) => {
-    navigate(`/game?difficulty=${difficulty}`); 
+    const themeId = themes[theme]; // Récupère l'ID du thème
+    navigate(`/game?difficulty=${difficulty}&themeId=${themeId}`); 
   };
 
   return (

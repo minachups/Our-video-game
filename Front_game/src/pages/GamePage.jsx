@@ -27,7 +27,7 @@ function Multi_Easy_Galaxy() {
     return () => {
       document.body.classList.remove('multi-easy-galaxy-page');
     };
-  }, [difficulty]);
+  }, [difficulty]); 
 
   return (
     <div className="multi-easy-galaxy">

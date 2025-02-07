@@ -9,7 +9,7 @@ require('./config/db.js')
 app.use(cors());
 
 
-app.use(express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 const gameRoutes = require('./routes/game.js');
 
 
