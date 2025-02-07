@@ -11,7 +11,7 @@ const Card = ({ card, index, handleFlipCard }) => {
     >
       {card.flipped ? (
         <img
-          src={`http://localhost:5000/${card.imageUrl}`}  // Directement card.imageUrl sans 'public/' supplémentaire
+          src={`http://localhost:5000/public/${card.imageUrl}`}  // Ajoutez 'public/' pour correspondre à la route statique
           alt={`Carte ${index}`}
           style={{ objectFit: 'cover' }}
         />
