@@ -73,6 +73,67 @@ async function createDeck(difficulty) {
   }
 }
 
+async function givePowerIfNeeded() {
+  if (gameState.turnCount % 3 === 0) {
+    try {
+      const powers = await getPowersFromDB();
+      if (powers.length > 0) {
+        const power = powers[Math.floor(Math.random() * powers.length)];
+        gameState.playerPowers[gameState.currentPlayer].push(power);
+        console.log(`Pouvoir attribué au joueur ${gameState.currentPlayer}:`, power);
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'attribution du pouvoir :', error);
+    }
+  }
+}
+
+
+
+
+// Mélanger un tableau
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Route pour uploader une image de carte
+app.post('/upload-card', upload.single('cardImage'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("Aucun fichier envoyé.");
+  }
+
+  const imageUrl = `/uploads/cards/${req.file.filename}`;
+  res.json({ message: "Upload réussi", imageUrl: imageUrl });
+});
+
+app.get('/start/:difficulty', async (req, res) => {
+  const { difficulty } = req.params;
+
+  try {
+    console.log('Démarrage du jeu avec la difficulté :', difficulty);
+    console.log('Exécution de la requête SQL pour récupérer les images');
+
+    // Créer le deck avec les cartes retournées et non retournées
+    gameState.cards = await createDeck(difficulty); // On attend le résultat de createDeck
+
+    console.log('Deck créé avec succès, nombre de cartes :', gameState.cards.length);
+
+    gameState.flippedCards = [];
+    gameState.scores = { 1: 0, 2: 0 };
+    gameState.currentPlayer = 1;
+
+    res.json(gameState);
+  } catch (error) {
+    console.error('Erreur lors du démarrage du jeu:', error.message);
+    console.error(error.stack); // Affiche la pile d'appel pour mieux comprendre l'erreur
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/flip-card', express.json(), async (req, res) => {
   const { index } = req.body;
 
@@ -120,63 +181,6 @@ app.post('/flip-card', express.json(), async (req, res) => {
   }
 });
 
-async function givePowerIfNeeded() {
-  if (gameState.turnCount % 3 === 0) {
-    try {
-      const powers = await getPowersFromDB();
-      if (powers.length > 0) {
-        const power = powers[Math.floor(Math.random() * powers.length)];
-        gameState.playerPowers[gameState.currentPlayer].push(power);
-        console.log(`Pouvoir attribué au joueur ${gameState.currentPlayer}:`, power);
-      }
-    } catch (error) {
-      console.error('Erreur lors de l\'attribution du pouvoir :', error);
-    }
-  }
-}
-
-// Mélanger un tableau
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// Route pour uploader une image de carte
-app.post('/upload-card', upload.single('cardImage'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("Aucun fichier envoyé.");
-  }
-
-  const imageUrl = `/uploads/cards/${req.file.filename}`;
-  res.json({ message: "Upload réussi", imageUrl: imageUrl });
-});
-
-app.get('/start/:difficulty', async (req, res) => {
-  const { difficulty } = req.params;
-
-  try {
-    console.log('Démarrage du jeu avec la difficulté :', difficulty);
-    console.log('Exécution de la requête SQL pour récupérer les images');
-
-    // Créer le deck avec les cartes retournées et non retournées
-    gameState.cards = await createDeck(difficulty); // On attend le résultat de createDeck
-
-    console.log('Deck créé avec succès, nombre de cartes :', gameState.cards.length);
-
-    gameState.flippedCards = [];
-    gameState.scores = { 1: 0, 2: 0 };
-    gameState.currentPlayer = 1;
-
-    res.json(gameState);
-  } catch (error) {
-    console.error('Erreur lors du démarrage du jeu:', error.message);
-    console.error(error.stack); // Affiche la pile d'appel pour mieux comprendre l'erreur
-    res.status(500).json({ error: error.message });
-  }
-});
 
 app.post('/use-power', express.json(), (req, res) => {
   const { playerId, powerName } = req.body;
