@@ -23,7 +23,6 @@ const GameBoard = ({ gameState, setGameState, difficulty }) => {
 
   return (
     <div>
-  
       <div
         className="board"
         style={{

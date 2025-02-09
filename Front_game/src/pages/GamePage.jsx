@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import GameBoard from '../components/GameBoard';
+import PowerCard from '../components/PowerCard/powerCard';
 import './Multi_Easy_Galaxy.css';
 
 function Multi_Easy_Galaxy() {
@@ -59,7 +60,9 @@ function Multi_Easy_Galaxy() {
       <aside className="desk">
         <h2>My Desk</h2>
         <div className="cards">
-          {/* Contenu de votre desk */}
+          {gameState && gameState.playerPowers[gameState.currentPlayer].map((power, index) => (
+            <PowerCard key={index} power={power} />
+          ))}
         </div>
       </aside>
     </div>

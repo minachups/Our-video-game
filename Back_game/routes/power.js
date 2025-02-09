@@ -1,18 +1,15 @@
 const express = require('express');
 const app = express.Router();
-const multer = require('multer');
-const path = require('path');
+const pool = require('../config/db.js'); 
 
-
-
-app.get('/get-powers/:playerId', (req, res) => {
-    const { playerId } = req.params;
-    if (!gameState.playerPowers[playerId]) {
-        return res.status(404).json({ message: "Joueur introuvable ou aucun pouvoir." });
+async function getPowersFromDB() {
+    try {
+        const [rows] = await pool.execute('SELECT Nom_Pouvoir, Description_Pouvoir, Image_Pouvoir FROM Pouvoir');
+        return rows;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des pouvoirs :', error);
+        throw error;
     }
-    res.json({ powers: gameState.playerPowers[playerId] });
-});
+}
 
-
-
-module.exports = app;
+module.exports = { getPowersFromDB };
